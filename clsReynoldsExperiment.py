@@ -37,7 +37,7 @@ class clReynoldsExperiment:
             Specifics:
         """
         try:
-            print "From experiment class:: Number of Runs: ", NumRuns, " Oil Distribution: ", OilDistribution, " Results Filename: ", ResultsFileName, " Agent Data: ", AgentsData
+            print "From reynolds experiment class:: Number of Runs: ", NumRuns, " Oil Distribution: ", OilDistribution, " Results Filename: ", ResultsFileName, " Agent Data: ", AgentsData
 
         except:
             raise ReynoldsExperimentError()

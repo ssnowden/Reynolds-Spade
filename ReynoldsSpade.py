@@ -36,9 +36,11 @@ def main():
         instApp.setTitle("Reynold's SPADE")
 
         instApp.mainloop()
-        GUIsession.destroy()
     except:
-        messagebox.showwarning("Application Error", "Application Failed to Start")
+        exc_type, exc_value = sys.exc_info()[:2]
+        strErrorMessage = exc_type.__name__ + ": " + str(exc_value)
+        messagebox.showwarning("Application Error", strErrorMessage)
+        GUIsession.destroy()
 
 if __name__ == "__main__":
     main()

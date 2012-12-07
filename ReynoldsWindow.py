@@ -47,8 +47,10 @@ class frmApplicationWindow(Frame):
             self.pack(expand=YES)
 
             self._CreateWidgets()
-        except: 
-            messagebox.showwarning("Window Error", "Window Failed to Start")
+        except ReynoldsWindowCreateWidgetsError as AnError:
+            raise ReynoldsWindowCreateWidgetsError(AnError)
+        except:
+            raise ReynoldsWindowError("Window Failed to Start")
             
 #// -------------------------------------------------------------------------------
 #// ------------------------------------- Attribute Definitions -------------------
@@ -102,11 +104,10 @@ class frmApplicationWindow(Frame):
             self._CreateWidgetsButtons()
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
+        except ReynoldsWindowCreateWidgetsError as AnError:
+            raise ReynoldsWindowCreateWidgetsError(AnError)
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgets Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgets Failed")
 
     def _CreateWidgetsButtons(self):
@@ -117,23 +118,19 @@ class frmApplicationWindow(Frame):
         """
         try:
             #-------------------------- finally setup any application specific attributes -------------------------------------------------------------------
-
             self.btnCommenceExperiment = Button(self)
             self.btnCommenceExperiment["text"] = "Commence Experiment"
             self.btnCommenceExperiment["command"] =  self._CommenceExperiment
             self.btnCommenceExperiment.grid(row=0, column=2, sticky=E+W)
 
-            self.btnExit = Button(self)
-            self.btnExit["text"] = "QUIT"
-            self.btnExit["command"] =  self._CloseWindow
-            self.btnExit.grid(row=0, column=3, sticky=E+W)
+##            self.btnExit = Button(self)
+##            self.btnExit["text"] = "QUIT"
+##            self.btnExit["command"] =  self._CloseWindow
+##            self.btnExit.grid(row=0, column=3, sticky=E+W)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsButtons Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsButtons Failed")
 
     def _CreateWidgetsOilDistribution(self):
@@ -153,11 +150,8 @@ class frmApplicationWindow(Frame):
             self.lboxOilDistributions.insert(END, "LinearSteep")
             
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsOilDistribution Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsOilDistribution Failed")
 
     def _CreateWidgetsNumberOfRuns(self):
@@ -175,11 +169,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfRuns.grid(row=1, column=1)
             
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsNumberOfRuns Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsNumberOfRuns Failed")
 
     def _CreateWidgetsResultsFileName(self):
@@ -197,11 +188,8 @@ class frmApplicationWindow(Frame):
             self.txtResultsFileName.grid(row=1, column=3)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsResultsFileName Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsResultsFileName Failed")
 
     def _CreateWidgetsAgentsMatrixLabels(self):
@@ -225,11 +213,8 @@ class frmApplicationWindow(Frame):
             Label(self, text="Neutral", font=LabelFont, fg="purple").grid(row=8, column=0)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsMatrixLabels Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsMatrixLabels Failed")
 
     def _CreateWidgetsAgentsOptimistic(self):
@@ -254,11 +239,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfOptimists.grid(row=4, column=3)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsOptimistic Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsOptimistic Failed")
 
     def _CreateWidgetsAgentsPessimistic(self):
@@ -283,11 +265,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfPessimists.grid(row=5, column=3)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsPessimistic Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsPessimistic Failed")
 
     def _CreateWidgetsAgentsStubborn(self):
@@ -312,11 +291,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfStubborn.grid(row=6, column=3)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsStubborn Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsStubborn Failed")
 
     def _CreateWidgetsAgentsOpportunistic(self):
@@ -340,12 +316,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfOpportunistic = Entry(self, textvariable=self.NumberOfOpportunistic)
             self.txtNumberOfOpportunistic.grid(row=7, column=3)
 
-        #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsOpportunistic Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsOpportunistic Failed")
 
     def _CreateWidgetsAgentsNeutral(self):
@@ -370,11 +342,8 @@ class frmApplicationWindow(Frame):
             self.txtNumberOfNeutral.grid(row=8, column=3)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
+            raise ReynoldsWindowCreateWidgetsError("_CreateWidgetsAgentsNeutral Failed")
             messagebox.showwarning("Internal Method Error", "_CreateWidgetsAgentsNeutral Failed")
 
     def _CloseWindow(self):
@@ -387,13 +356,11 @@ class frmApplicationWindow(Frame):
 
             self.quit()
 
+
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
             messagebox.showwarning("Internal Method Error", "_CloseWindow Failed")
+            raise ReynoldsWindowButtonError("_CloseWindow Failed")
 
     def _CommenceExperiment(self):
         """
@@ -410,12 +377,11 @@ class frmApplicationWindow(Frame):
             CurrentExperiment = clReynoldsExperiment(NumRuns, OilDistribution, ResultsFileName, self.AgentsData)
 
         #// Custom Class Error's first
-        except clsReynoldsExperiment.ReynoldsExperimentError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_CommenceExperiment Failed " +
-                                   str(AnError.__class__))
+        except ReynoldsWindowMethodError as AnError:
+            raise ReynoldsWindowMethodError(AnError)
         except:
             messagebox.showwarning("Internal Method Error", "_CommenceExperiment Failed")
+            raise ReynoldsWindowButtonError("_CommenceExperiment Failed")
 
     def _CreateListOfAgents(self):
         """
@@ -425,17 +391,41 @@ class frmApplicationWindow(Frame):
         """
         try:
             self.AgentsData = []
-            self._CreateListOfOptimisticAgents()
+            NumberOfOptimists, NumberOfPessimists, NumberOfStubborn, NumberOfOpportunists, NumberOfNeutrals = self._GetNumbersOfAgents()
+            
+            if NumberOfOptimists > 0: self._CreateListOfOptimisticAgents(NumberOfOptimists)
+            if NumberOfPessimists > 0: self._CreateListOfPessimisticAgents(NumberOfPessimists)
+            if NumberOfStubborn > 0: self._CreateListOfStubbornAgents(NumberOfStubborn)
+            if NumberOfOpportunists > 0: self._CreateListOfOpportunisticAgents(NumberOfOpportunists)
+            if NumberOfNeutrals > 0: self._CreateListOfNeutralAgents(NumberOfNeutrals)
 
         #// Custom Class Error's first
-        except clsClass.ClassError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
+        except ReynoldsWindowMethodError as AnError:
+            raise ReynoldsWindowMethodError(AnError)
         except:
             messagebox.showwarning("Internal Method Error", "_CreateListOfAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfAgents Failed")
 
-    def _CreateListOfOptimisticAgents(self):
+    def _GetNumbersOfAgents(self):
+        """
+
+            Arguments:
+            Specifics:
+        """
+        try:
+            NumberOfOptimists = eval(self.NumberOfOptimists.get())
+            NumberOfPessimists = eval(self.NumberOfPessimists.get())
+            NumberOfStubborn = eval(self.NumberOfStubborn.get())
+            NumberOfOpportunists = eval(self.NumberOfOpportunistic.get())
+            NumberOfNeutrals = eval(self.NumberOfNeutral.get())
+            return NumberOfOptimists, NumberOfPessimists, NumberOfStubborn, NumberOfOpportunists, NumberOfNeutrals
+
+        #// Custom Class Error's first
+        except:
+            messagebox.showwarning("Internal Method Error", "_GetNumbersOfAgents Failed")
+            raise ReynoldsWindowMethodError("_GetNumbersOfAgents Failed")
+
+    def _CreateListOfOptimisticAgents(self, NumberOfOptimists):
         """
 
             Arguments:
@@ -443,7 +433,6 @@ class frmApplicationWindow(Frame):
         """
         try:
             OptimisticAgentData = []
-            NumberOfOptimists = eval(self.NumberOfOptimists.get())
             OptimistsOptimismLevel = eval(self.OptimisticOptimism.get())
             OptimistsPessimismLevel = eval(self.OptimisticPessimism.get())
             
@@ -452,19 +441,96 @@ class frmApplicationWindow(Frame):
                 self.AgentsData.extend(OptimisticAgentData)
 
         #// Custom Class Error's first
-        except clsReynoldsExperiment.ReynoldsExperimentError as AnError:
-            messagebox.showwarning("Internal Method Error",
-                                   "_InternalGenericMethod Failed " +
-                                   str(AnError.__class__))
         except:
-            messagebox.showwarning("Internal Method Error", "_CreateListOfAgents Failed")
+            messagebox.showwarning("Internal Method Error", "_CreateListOfOptimisticAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfOptimisticAgents Failed")
+
+    def _CreateListOfPessimisticAgents(self, NumberOfPessimists):
+        """
+
+            Arguments:
+            Specifics:
+        """
+        try:
+            PessimisticAgentData = []
+            PessimistsOptimismLevel = eval(self.PessimisticOptimism.get())
+            PessimistsPessimismLevel = eval(self.PessimisticPessimism.get())
+            
+            if NumberOfPessimists:
+                PessimisticAgentData = [('Pessimistic', PessimistsOptimismLevel, PessimistsPessimismLevel) for A in range(NumberOfPessimists)]
+                self.AgentsData.extend(PessimisticAgentData)
+
+        #// Custom Class Error's first
+        except:
+            messagebox.showwarning("Internal Method Error", "_CreateListOfPessimisticAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfPessimisticAgents Failed")
+
+    def _CreateListOfStubbornAgents(self, NumberOfStubborn):
+        """
+
+            Arguments:
+            Specifics:
+        """
+        try:
+            StubbornAgentData = []
+            StubbornOptimismLevel = eval(self.StubbornOptimism.get())
+            StubbornPessimismLevel = eval(self.StubbornPessimism.get())
+            
+            if NumberOfStubborn:
+                StubbornAgentData = [('Stubborn', StubbornOptimismLevel, StubbornPessimismLevel) for A in range(NumberOfStubborn)]
+                self.AgentsData.extend(StubbornAgentData)
+
+        #// Custom Class Error's first
+        except:
+            messagebox.showwarning("Internal Method Error", "_CreateListOfStubbornAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfStubbornAgents Failed")
+
+    def _CreateListOfOpportunisticAgents(self, NumberOfOpportunists):
+        """
+
+            Arguments:
+            Specifics:
+        """
+        try:
+            OpportunisticAgentData = []
+            OpportunisticOptimismLevel = eval(self.OpportunisticOptimism.get())
+            OpportunisticPessimismLevel = eval(self.OpportunisticPessimism.get())
+            
+            if NumberOfOpportunists:
+                OpportunisticAgentData = [('Opportunistic', OpportunisticOptimismLevel, OpportunisticPessimismLevel) for A in range(NumberOfOpportunists)]
+                self.AgentsData.extend(OpportunisticAgentData)
+
+        #// Custom Class Error's first
+        except:
+            messagebox.showwarning("Internal Method Error", "_CreateListOfOpportunisticAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfOpportunisticAgents Failed")
+
+    def _CreateListOfNeutralAgents(self, NumberOfNeutrals):
+        """
+
+            Arguments:
+            Specifics:
+        """
+        try:
+            NeutralAgentData = []
+            NeutralOptimismLevel = eval(self.NeutralOptimism.get())
+            NeutralPessimismLevel = eval(self.NeutralPessimism.get())
+            
+            if NumberOfNeutrals:
+                NeutralAgentData = [('Neutral', NeutralOptimismLevel, NeutralPessimismLevel) for A in range(NumberOfNeutrals)]
+                self.AgentsData.extend(NeutralAgentData)
+
+        #// Custom Class Error's first
+        except:
+            messagebox.showwarning("Internal Method Error", "_CreateListOfNeutralAgents Failed")
+            raise ReynoldsWindowMethodError("_CreateListOfNeutralAgents Failed")
 
 #// ---------------------------------------------------------------------------
 #// ------------------------------------- Exception Class Definitions ---------
 #// ---------------------------------------------------------------------------
-'''
-class MyClassTopLevelError(Exception): pass
-class MyClassFirstLevelError(MyClassTopLevelError): pass
-class MyClassSecond_A_LevelError(MyClassFirstLevelError): pass
-class MyClassSecond_B_LevelError(MyClassFirstLevelError): pass
-'''
+
+class ReynoldsWindowError(Exception): pass
+class ReynoldsWindowCreateWidgetsError(Exception): pass
+class ReynoldsWindowButtonError(Exception): pass
+class ReynoldsWindowMethodError(Exception): pass
+
